@@ -9,7 +9,7 @@ import abi from "../utils/contract.json";
 const TESTNET_SITE = true;
 
 const CONTRACT_ADDRESS = TESTNET_SITE ?
-  "0x26fd358F03bCAd02B287AD656B12d0596A2c45F6" :
+  "0x507aEf7c0e5387b4680D54700fd3a3a1A989fD68" :
   "0xc"
 ;
 const CONTRACT_ABI = abi.abi;
@@ -60,7 +60,7 @@ const Rarity = () => {
   const [currAccount, setCurrentAccount] = useState(null);
   const [currMintCount, setCurrMintCount] = useState(0);
   const [maxMintCount, setMaxMintCount] = useState(0);
-  const [breadWinnersNfts, setBreadWinnersNfts] = useState([]);
+  const [rowdyParrotsNFTs, setRowdyParrotsNFTs] = useState([]);
   const [price, setPrice] = useState(null);
 	const [presaleStartDate, setPresaleStartDate] = useState(1639283168);
 	const [publicStartDate, setPublicStartDate] = useState(1639369568);
@@ -256,27 +256,26 @@ const Rarity = () => {
 			const eContract = new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
       
 			let info = await eContract.info();
-			console.log("infor", info);
+			console.log("infor", Number(info[0]),Number(info[1]),Number(info[2]),Number(info[3]),Number(info[4]),Number(info[5]),);
 
 			// Price
 			// console.log("price", Number(info[0]) / Math.pow(10, 18));
 			setPrice(Number(info[0]));
 
 			// Presale Start Date
-			// console.log("presaleStartDate", Number(info[1]));
 			setPresaleStartDate(Number(info[1]));
 			
 			// Public Sale Start Date
-			// console.log("publicStartDate", Number(info[2]));
 			setPublicStartDate(Number(info[2]));
 
 			// Current Supply
-			// console.log("currMintCount", Number(info[3]));
 			setCurrMintCount(Number(info[3]));
 
+      //Max supply
+      setRowdyParrotsNFTs(Number(info[4]));
+
 			// Max Supply
-			// console.log("maxMintCount", Number(info[4]));
-			setMaxMintCount(Number(info[4]));
+			setMaxMintCount(Number(info[5]));
 
 		} catch (e) {
 			toast.error(<>Failed to load the information from Network. <br />Make sure you are connected to Network and refresh page!</>, {
@@ -312,7 +311,7 @@ const Rarity = () => {
           // ** Set toast link
           setToastLink(`https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId}`);
 
-          toast.success(<div style={{ display: "flex", alignItems: "center" }}><img src="img/bread.png" style={{ width: '15px' }} /> &nbsp; BreadWinnersNFT Minted!</div>, {
+          toast.success('RowdyParrotsNFT Minted!', {
             position: "top-left",
             autoClose: 3000,
             hideProgressBar: true,
@@ -371,14 +370,72 @@ const Rarity = () => {
       <div className={styles.mintWrapper} data-aos="flip-down">
         <img src="/img/leafSmall.png" className={styles.leafSmallMint} />
         <p className={styles.mintInfo}>Start collecting Rowdy Parrots</p>
-        {/* <p className={styles.mintInfo}></p> */}
-        <div className={styles.mintCount}>
-          <button className={styles.mintDec} onClick = {() => handleCount(-1)}>-</button>
-          <p className={styles.mintNum}>{count}</p>
-          <button className={styles.mintDec} onClick = {() => handleCount(1)}>+</button>
-        </div>
+        {
+          Number(currMintCount) >= Number(10000) ? 
+          <p className={styles.mintInfo}><span className={styles.treeTitleAlt} style={{ fontSize: '35px' }}>OMG! NFTs SOLD OUT!</span></p> :
+          (
+            <>
+              {
+                DEPLOYED_CHAINS.includes(chainId) ? (
+                  <p className={styles.mintInfo} style={{ margin: '0' }}><span className={styles.treeTitleAlt}>{ currMintCount }/ { rowdyParrotsNFTs }</span> minted</p>
+                ): null 
+              }
+              <p className={styles.mintInfo} style={{ margin: '0' }}>Mint Price: &nbsp;<span className={styles.treeTitleAlt}>{Number(price / Math.pow(10, 18) * count).toFixed(3)}</span>&nbsp;ETH</p>
+              <div className={styles.mintCount}>
+                <button 
+                  className={styles.mintDec} 
+                  disabled={currAccount ? (currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? true : false : true}
+                  onClick = {() => handleCount(-1)}
+                >
+                  -
+                </button>
+                <p className={styles.mintNum}>{count}</p>
+                <button 
+                  className={styles.mintDec} 
+                  disabled={currAccount ? (currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? true : false : true}
+                  onClick = {() => handleCount(1)}
+                >
+                  +
+                </button>
+              </div>
+              {
+                currAccount ?
+                  (
+                    <button 
+                      type = 'button'
+                      className={styles.mintLink}
+                      onClick={askContractToMintNft}
+                      disabled={(currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? true : false}
+                      style={{
+                        opacity: (currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? 0.5 : 1,
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {!isMining && !isConfirmed ?                     
+                        'Mint' :
+                        isMining && !isConfirmed ? (
+                          <div className={styles.loader}></div>
+                        ) : null
+                      } 
+                    </button>
+                  ) : null
+              }
+              {
+                currAccount ? null : (
+                  <button 
+                    type = 'button'
+                    onClick={connectWallet}
+                    style={{ cursor: 'pointer' }}
+                    className={styles.mintLink}>
+                      Connect Wallet
+                  </button>
+                )
+              }
+            </>
+          )
+        }
         
-        <a className={styles.mintLink}>Mint</a>
+        
       </div>
       
       <p style={{color: '#FFFFFF'}} data-aos="fade-up">Do you want to participate in unique raffles?  Join our Discord!</p>

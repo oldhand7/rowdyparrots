@@ -226,6 +226,12 @@
   color: white;
 }
 
+.treeTitleAlt {
+  color: #9FFFA9;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 @media(max-width: 1250px){
   .leafSmallSelector {
     display: none;
@@ -254,4 +260,25 @@
   .leafSmallMint {
     display: none;
   }
+}
+
+.loader {
+  border: 5px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 5px solid #3498db;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
