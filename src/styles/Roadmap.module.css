@@ -1,0 +1,187 @@
+.roadmapSection {
+  width: 100vw;
+  height: 150vh;
+  background: #0A1412; 
+  margin: 0;
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0vw .5vh 2vh black inset;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.tree {
+  position: absolute;
+  align-self: center;
+  bottom: 0;
+  z-index: 0;
+}
+
+.miniTitle {
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  margin: 0;
+  margin-top: 3%;
+  z-index: 1;
+}
+
+.title {
+  color: white;
+  font-size: 54px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  margin: 0;
+  z-index: 1;
+}
+
+.titleAlt {
+  color: #9FFFA9;
+  font-size: 54px;
+  font-weight: 700;
+  margin: 15px;
+}
+
+.paragraph{
+  display: block;
+  color: white;
+}
+
+.treeWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+  height: 70%;
+  z-index: 2;
+}
+
+.treeLeftWrapper {
+  margin-top: -24%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 44%;
+  height: 100%;
+}
+
+.treeRightWrapper {
+  margin-top: -10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 44%;
+  height: 100%;
+}
+
+.treeContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+}
+
+.treeTitle {
+  font-size: 30px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+}
+
+.treeTitleAlt {
+  color: #9FFFA9;
+}
+
+.text {
+  font-size: 18px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+}
+
+.treeWrapperMobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  max-width: 95%;
+  height: 75%;
+}
+
+.mobileInfo {
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.mobileInfoStrong {
+  color: white;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mobileRoadmapGoals {
+  width: 90%;
+  background: rgba(0, 0, 0, 0.39);
+  border-radius: 20px;
+  z-index: 3;
+  padding: 0 5% 7% 5%;
+}
+
+@media(max-width: 750px){
+  .roadmapSection{
+    height: 130vh;
+  }
+}
+
+@media(max-width: 500px){
+  .roadmapSection{
+    height: 150vh;
+  }
+}
+
+@media(max-width: 768px){
+  .description{
+    font-size: 15px;
+  }
+  .info {
+    font-size: 14px;
+  }
+  .title {
+    font-size: 40px;
+  }
+  .titleAlt {
+    font-size: 40px;
+    margin: auto 8px auto;
+    padding: 0;
+  }
+  .text {
+    font-size: 15px;
+  }
+  .mobileInfo {
+    font-size: 14px;
+  }
+  .treeTitle {
+    font-size: 24px;
+  }
+}
+
+@media(max-width: 390px){
+  .treeTitle {
+    font-size: 22px;
+  }
+}

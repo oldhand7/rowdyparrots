@@ -1,0 +1,19 @@
+@keyframes fall {
+  0% {
+    top: -300px;
+  }
+  100% {
+    top: calc(100vh + 200px);
+  }
+}
+
+.leaf {
+  position: fixed;
+  top: -300px;
+  animation-name: fall;
+  animation-iteration-count: infinite;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in;
+  z-index: 1;
+  width: 100px;
+}

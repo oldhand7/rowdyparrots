@@ -1,0 +1,133 @@
+.faqSection {
+  width: 100vw;
+  height: 85vh;
+  background: #342A21; 
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0vw .5vh 2vh black;
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 5%;
+}
+
+.miniTitle {
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  margin: 0;
+  margin-top: -7%;
+  z-index: 1;
+}
+
+.title {
+  color: white;
+  font-size: 54px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100vw;
+  margin: 0;
+  z-index: 1;
+}
+
+.titleAlt {
+  color: #9FFFA9;
+  font-size: 54px;
+  font-weight: 700;
+  margin: 15px;
+}
+
+.accordion {
+  width: 600px;
+  max-width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.accordionTitle {
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.accordionTitleAlt {
+  color: #9FFFA9;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.accordionIcon {
+  width: 30px;
+  height: 20px;
+}
+
+@keyframes flipUp {
+  0%{
+    transform: scaleY(-1);
+  }
+  100%{
+    transform: scaleY(1);
+  }
+}
+
+.accordionIconAlt {
+  width: 30px;
+  height: 20px;
+  animation-name: flipUp;
+  animation-duration: .7s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.accordionAnswer {
+  color: white;
+  width: 600px;
+  max-width: 90%;
+  margin: 0;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@media(max-width: 768px){
+  .description{
+    font-size: 15px;
+  }
+  .info {
+    font-size: 14px;
+  }
+  .title {
+    font-size: 40px;
+  }
+  .titleAlt {
+    font-size: 40px;
+    margin: auto 8px auto;
+    padding: 0;
+  }
+  .miniTitle {
+    font-size: 15px;
+  }
+  .accordionTitle {
+    font-size: 17px;
+  }
+  .accordionAnswer {
+    font-size: 14px;
+  }
+}

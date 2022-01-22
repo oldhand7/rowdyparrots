@@ -1,0 +1,63 @@
+.navbar {
+  width: 100vw;
+  padding: 0 5vw 0 5vw;
+  height: 67px;
+  position: fixed;
+  z-index: 999999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.name {
+  font-size: 25px;
+  font-weight: 700;
+  color: white;
+  vertical-align: middle;
+  align-self: center;
+  margin: 0;
+}
+
+.navigation {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0A1412;
+  border-radius: 30px;
+  padding: 0 1rem 0 1rem;
+  margin: 0;
+  height: 40px;
+}
+
+.navlink {
+  color: white;
+  margin-left: 10px;
+  text-decoration: none;
+}
+
+.navToggler {
+  font-size: 40px;
+  width: 50px;
+  height: 50px;
+  background: none;
+  border: none;
+  color: white;
+}
+
+.navigationMobile {
+  width: 100vw;
+  position: absolute;
+  top: 67px;
+  height: 50px;
+  display: flex;
+  background: #9FFFA9;
+  left: 0;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.navigationMobile .navlink {
+  color: black;
+  font-size: 16px;
+}
