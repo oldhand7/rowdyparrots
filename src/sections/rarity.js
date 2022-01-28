@@ -20,7 +20,33 @@ const OPENSEA_COLLECTION_URL = TESTNET_SITE ?
 
 const DEPLOYED_CHAINS = [4];
 
+const calculateTimeLeft = () => {;
+  let year = new Date().getFullYear();
+  const difference = +new Date(`12/15/${year} 08:00:00 AM EST`) - +new Date();
+  let timeLeft = {days: 0, hours: 0, minutes: 0, seconds: 0};
+
+  if (difference > 0) {
+      timeLeft = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+    };
+  }
+
+  return timeLeft;
+    
+};  
+
 const Rarity = () => {
+
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+  useEffect(() => {
+      setTimeout(() => {
+          setTimeLeft(calculateTimeLeft());
+      }, 1000);
+  });
 
   const carouselItems = {
     'common': [{'name': '1', 'legend': '36%'},{'name': '2', 'legend': '36%'},{'name': '3', 'legend': '18%'},{'name': '4', 'legend': '20%'},{'name': '5', 'legend': '20%'},{'name': '6', 'legend': '6%'},{'name': '7', 'legend': '6%'},{'name': '8', 'legend': '6%'},{'name': '9', 'legend': '6%'},{'name': '10', 'legend': '6%'},{'name': '11', 'legend': '6%'},{'name': '12', 'legend': '6%'},{'name': '13', 'legend': '6%'},{'name': '14', 'legend': '30%'},{'name': '15', 'legend': '7%'},{'name': '16', 'legend': '7%'},{'name': '17', 'legend': '7%'},{'name': '18', 'legend': '7%'},{'name': '19', 'legend': '7%'},{'name': '20', 'legend': '12%'},{'name': '21', 'legend': '12%'},{'name': '22', 'legend': '12%'},{'name': '23', 'legend': '25%'},{'name': '24', 'legend': '25%'},{'name': '25', 'legend': ''},{'name': '26', 'legend': ''},{'name': '27', 'legend': ''},{'name': '28', 'legend': ''},{'name': '29', 'legend': ''},{'name': '30', 'legend': ''},{'name': '31', 'legend': ''},{'name': '32', 'legend': '13%'},{'name': '33', 'legend': '13%'},{'name': '34', 'legend': '13%'},{'name': '35', 'legend': '13%'},{'name': '36', 'legend': '13%'},{'name': '37', 'legend': '13%'}],
