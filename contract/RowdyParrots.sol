@@ -1344,7 +1344,7 @@ contract RowdyParrots is ERC721Enumerable, Ownable {
                 ? string(
                     abi.encodePacked(
                         currentBaseURI,
-                        (tokenId - 1).toString(),
+                        tokenId.toString(),
                         baseExtension
                     )
                 )

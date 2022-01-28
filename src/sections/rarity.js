@@ -9,7 +9,7 @@ import abi from "../utils/contract.json";
 const TESTNET_SITE = true;
 
 const CONTRACT_ADDRESS = TESTNET_SITE ?
-  "0xD9d9821d7Dd1128f8b8782ca137346d937BF33C1" :
+  "0xD1650ab965a4AF658483b36216328a006FF9B55d" :
   "0xc"
 ;
 const CONTRACT_ABI = abi.abi;
