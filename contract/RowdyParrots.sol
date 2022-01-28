@@ -1231,13 +1231,14 @@ contract RowdyParrots is ERC721Enumerable, Ownable {
     string public baseExtension = ".json";
 
     uint256 public maxSupply = 10000;
-    uint256 public presaleStartDate = 1642432420;       // 17 Mon 2022 GMT
-    uint256 public publicStartDate = 1642518820;        // 18 Mon 2022 GMT
+    uint256 public presalemaxSupply = 3;
+    uint256 public presaleStartDate = 1643306479;       // 27 Mon 2022 GMT
+    uint256 public publicStartDate = 1643479279;        // 18 Mon 2022 GMT
 
     uint256 public presalePrice = 0.001 ether;
     uint256 public publicsalePrice = 0.002 ether;
 
-    uint256 public maxMintCount = 25;
+    uint256 public maxMintCount = 1;
 
     mapping(address => bool) public whitelist;
 
@@ -1303,7 +1304,7 @@ contract RowdyParrots is ERC721Enumerable, Ownable {
         require(!paused,                                'Contract is paused.');
         require(presaleStartDate < block.timestamp,     'Presale Minting is not started.');
         require(block.timestamp < publicStartDate,      'Presale Minting is ended.');
-        require(tokenCount + _mintCount <= maxMintCount,           string(abi.encodePacked('You can only mint ', maxMintCount.toString(), ' RowdyarrotsNFT in PreSale')));
+        require(tokenCount + _mintCount <= presalemaxSupply,           string(abi.encodePacked(presalemaxSupply.toString(), ' RowdyarrotsNFTs can be minted in PreSale')));
         require(supply < maxSupply,                     'This transaction would exceed max supply of agelessteez');
         require(msg.value >= price(),                  'Ether value is too low');
 
@@ -1364,8 +1365,9 @@ contract RowdyParrots is ERC721Enumerable, Ownable {
         publicStartDate = _public_startdate;
     }
 
-    function setSupply(uint256 _max_supply) public onlyOwner {
+    function setSupply(uint256 _max_supply, uint256 _presalemaxSupply) public onlyOwner {
         maxSupply = _max_supply;
+        presalemaxSupply = _presalemaxSupply;
     }
     
     function setBaseExtension(string memory _base_extension) public onlyOwner {

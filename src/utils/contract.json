@@ -336,6 +336,11 @@
                     "internalType": "uint256",
                     "name": "_max_supply",
                     "type": "uint256"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "_presalemaxSupply",
+                    "type": "uint256"
                 }
             ],
             "name": "setSupply",
@@ -622,6 +627,19 @@
                     "internalType": "bool",
                     "name": "",
                     "type": "bool"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "presalemaxSupply",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
                 }
             ],
             "stateMutability": "view",

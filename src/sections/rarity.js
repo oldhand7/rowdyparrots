@@ -9,7 +9,7 @@ import abi from "../utils/contract.json";
 const TESTNET_SITE = true;
 
 const CONTRACT_ADDRESS = TESTNET_SITE ?
-  "0x507aEf7c0e5387b4680D54700fd3a3a1A989fD68" :
+  "0xD9d9821d7Dd1128f8b8782ca137346d937BF33C1" :
   "0xc"
 ;
 const CONTRACT_ABI = abi.abi;
@@ -18,7 +18,7 @@ const OPENSEA_COLLECTION_URL = TESTNET_SITE ?
   "https://opensea.io/collection/the-epics-v2"
 ;
 
-const DEPLOYED_CHAINS = [3];
+const DEPLOYED_CHAINS = [4];
 
 const Rarity = () => {
 
@@ -59,7 +59,6 @@ const Rarity = () => {
 
   const [currAccount, setCurrentAccount] = useState(null);
   const [currMintCount, setCurrMintCount] = useState(0);
-  const [maxMintCount, setMaxMintCount] = useState(0);
   const [rowdyParrotsNFTs, setRowdyParrotsNFTs] = useState([]);
   const [price, setPrice] = useState(null);
 	const [presaleStartDate, setPresaleStartDate] = useState(1639283168);
@@ -275,7 +274,7 @@ const Rarity = () => {
       setRowdyParrotsNFTs(Number(info[4]));
 
 			// Max Supply
-			setMaxMintCount(Number(info[5]));
+			// setMaxMintCount(Number(info[5]));
 
 		} catch (e) {
 			toast.error(<>Failed to load the information from Network. <br />Make sure you are connected to Network and refresh page!</>, {
@@ -381,23 +380,6 @@ const Rarity = () => {
                 ): null 
               }
               <p className={styles.mintInfo} style={{ margin: '0' }}>Mint Price: &nbsp;<span className={styles.treeTitleAlt}>{Number(price / Math.pow(10, 18) * count).toFixed(3)}</span>&nbsp;ETH</p>
-              <div className={styles.mintCount}>
-                <button 
-                  className={styles.mintDec} 
-                  disabled={currAccount ? (currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? true : false : true}
-                  onClick = {() => handleCount(-1)}
-                >
-                  -
-                </button>
-                <p className={styles.mintNum}>{count}</p>
-                <button 
-                  className={styles.mintDec} 
-                  disabled={currAccount ? (currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? true : false : true}
-                  onClick = {() => handleCount(1)}
-                >
-                  +
-                </button>
-              </div>
               {
                 currAccount ?
                   (
@@ -405,10 +387,11 @@ const Rarity = () => {
                       type = 'button'
                       className={styles.mintLink}
                       onClick={askContractToMintNft}
-                      disabled={(currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? true : false}
+                      disabled={(currMintCount >= Number(10000) || !DEPLOYED_CHAINS.includes(chainId)) ? true : false}
                       style={{
-                        opacity: (currMintCount >= maxMintCount || !DEPLOYED_CHAINS.includes(chainId)) ? 0.5 : 1,
-                        cursor: 'pointer'
+                        opacity: (currMintCount >= Number(10000) || !DEPLOYED_CHAINS.includes(chainId)) ? 0.5 : 1,
+                        cursor: 'pointer',
+                        marginTop: '20px'
                       }}
                     >
                       {!isMining && !isConfirmed ?                     
