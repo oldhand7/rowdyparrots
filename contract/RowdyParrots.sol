@@ -1227,7 +1227,7 @@ contract RowdyParrots is ERC721Enumerable, Ownable {
 
     using Strings for uint256;
 
-   string public baseTokenURI;
+    string public baseTokenURI;
     string public baseExtension = ".json";
 
     uint256 public maxSupply = 10000;
@@ -1235,8 +1235,10 @@ contract RowdyParrots is ERC721Enumerable, Ownable {
     uint256 public presaleStartDate = 1643306479;       // 27 Mon 2022 GMT
     uint256 public publicStartDate = 1643479279;        // 18 Mon 2022 GMT
 
-    uint256 public presalePrice = 0.001 ether;
-    uint256 public publicsalePrice = 0.002 ether;
+    uint256 public presalePrice = 0.1 ether;
+    uint256 public publicsalePrice = 0.12 ether;
+
+    uint256 public presaleMintTotal = 999;
 
     uint256 public maxMintCount = 1;
 
@@ -1305,7 +1307,8 @@ contract RowdyParrots is ERC721Enumerable, Ownable {
         require(presaleStartDate < block.timestamp,     'Presale Minting is not started.');
         require(block.timestamp < publicStartDate,      'Presale Minting is ended.');
         require(tokenCount + _mintCount <= presalemaxSupply,           string(abi.encodePacked(presalemaxSupply.toString(), ' RowdyarrotsNFTs can be minted in PreSale')));
-        require(supply < maxSupply,                     'This transaction would exceed max supply of agelessteez');
+        require(supply < maxSupply,                     'This transaction would exceed max supply of RowdyarrotsNFTs');
+        require(supply < presaleMintTotal,                     string(abi.encodePacked(presaleMintTotal.toString(), ' This transaction would exceed max supply of RowdyarrotsNFTs in PreSale')));
         require(msg.value >= price(),                  'Ether value is too low');
 
         if (totalSupply() < maxSupply) {
